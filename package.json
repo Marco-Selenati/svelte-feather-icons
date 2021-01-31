@@ -8,24 +8,34 @@
     "type": "git"
   },
   "svelte": "src/index.ts",
-  "main": "src/index.ts",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
   "files": [
     "src/icons",
     "src/index.ts"
   ],
   "license": "MIT",
   "scripts": {
-    "clean": "del-cli src",
-    "build": "ts-node build",
+    "clean": "del-cli src dist",
+    "build": "ts-node --project generator/tsconfig.json generator/build && rollup -c",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-node-resolve": "^11.1.1",
+    "@rollup/plugin-typescript": "^8.1.1",
+    "@tsconfig/node12": "^1.0.7",
+    "@types/fs-extra": "^9.0.6",
     "del-cli": "^3.0.1",
     "feather-icons": "4.28.0",
     "fs-extra": "^9.1.0",
     "pascal-case": "^3.1.1",
     "path": "^0.12.7",
+    "rollup": "^2.38.2",
+    "rollup-plugin-svelte": "^7.1.0",
+    "rollup-plugin-terser": "^7.0.2",
     "svelte": "^3.18.0",
+    "svelte-preprocess": "^4.6.5",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   },

@@ -1,11 +1,19 @@
-const path = require("path");
-const feather = require("feather-icons/dist/icons.json");
-const { pascalCase } = require("pascal-case");
-const fs = require("fs-extra");
+import path from "path";
+import feather from "feather-icons/dist/icons.json";
+import { pascalCase } from "pascal-case";
+import fs from "fs-extra";
 
-const handleComponentName = (name) => name.replace(/\-(\d+)/, "$1");
+interface Icon {
+  name: string;
+  pascalCasedComponentName: string;
+  kebabCasedComponentName: string;
+}
 
-const component = (icon) => `
+const handleComponentName = (name: string) => name.replace(/\-(\d+)/, "$1");
+
+const featherSvgs: Record<string, string> = feather;
+
+const component = (icon: Icon) => `
 <script lang="typescript">
   export let size: string = "100%";
   export let strokeWidth: number = 2;
@@ -30,21 +38,20 @@ const component = (icon) => `
   stroke-linecap="round"
   stroke-linejoin="round"
   class="feather feather-${icon.name} {customClass}"
-  >${feather[icon.name]}</svg>
+  >${featherSvgs[icon.name]}</svg>
 `;
 
-const icons = Object.keys(feather).map((name) => ({
+const icons: Icon[] = Object.keys(feather).map((name) => ({
   name,
   pascalCasedComponentName: pascalCase(`${handleComponentName(name)}-icon`),
   kebabCasedComponentName: `${handleComponentName(name)}-icon`,
 }));
 
 Promise.all(
-  icons.map((icon) => {
+  icons.map(async (icon) => {
     const filepath = `./src/icons/${icon.pascalCasedComponentName}.svelte`;
-    return fs
-      .ensureDir(path.dirname(filepath))
-      .then(() => fs.writeFile(filepath, component(icon), "utf8"));
+    await fs.ensureDir(path.dirname(filepath));
+    return await fs.writeFile(filepath, component(icon), "utf8");
   })
 ).then(() => {
   const main = icons

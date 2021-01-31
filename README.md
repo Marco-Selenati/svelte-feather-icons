@@ -1,6 +1,6 @@
 # svelte-feather-icons-typescript
 
-Typescript only svelte feather icons
+Typed svelte feather icons
 
 ## Install
 
