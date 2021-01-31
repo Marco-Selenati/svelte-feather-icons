@@ -1,5 +1,5 @@
 {
-  "name": "svelte-feather-icons-typescript",
+  "name": "@marco-selenati/svelte-feather-icons-typescript",
   "description": "Feather icons for Svelte (Completely based on vue-feather-icons by EGOIST)",
   "version": "4.0.0",
   "author": "Marco Selenati <marcoselenati@gmail.com>",
