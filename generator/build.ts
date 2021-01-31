@@ -57,7 +57,7 @@ Promise.all(
   const main = icons
     .map(
       (icon) =>
-        `export { default as ${icon.pascalCasedComponentName} } from './icons/${icon.pascalCasedComponentName}.svelte'`
+        `export { default as ${icon.pascalCasedComponentName} } from './icons/${icon.pascalCasedComponentName}.svelte';`
     )
     .join("\n");
   return fs.outputFile("./src/index.ts", main, "utf8");
