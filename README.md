@@ -5,19 +5,19 @@ Typescript only svelte feather icons
 ## Install
 
 ```bash
-yarn add --dev svelte-feather-icons-typescript
+yarn add --dev @marco-selenati/svelte-feather-icons-typescript
 ```
 
 or use NPM
 
 ```bash
-npm install --save-dev svelte-feather-icons-typescript
+npm install --save-dev @marco-selenati/svelte-feather-icons-typescript
 ```
 
 ## Usage
 
 ```html
-<script>
+<script lang="typescript">
   // Only import what you need!
   import { AirplayIcon, AtSignIcon, ... } from 'svelte-feather-icons-typescript'
 </script>
