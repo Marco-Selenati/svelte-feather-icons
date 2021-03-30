@@ -12,12 +12,18 @@ export default {
   output: [
     {
       file: pkg.main,
-      format: "es",
+      format: "cjs",
+      exports: "named",
+      sourcemap: true,
+    },
+    {
+      file: pkg.module,
+      format: "esm",
+      exports: "named",
       sourcemap: true,
     },
   ],
   plugins: [
-    commonjs(),
     typescript(),
     svelte({
       preprocess: autoPreprocess(),
@@ -25,6 +31,5 @@ export default {
     resolve({
       dedupe: ["svelte"],
     }),
-    terser(),
   ],
 };
